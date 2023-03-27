@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.microchip.xc8</ToolchainName>
+    <ProjectGuid>2285C48D-296E-43FD-A7B6-69885F64CFFD</ProjectGuid>
+    <avrdevice>ATmega32</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>smart fan controller</AssemblyName>
+    <Name>smart fan controller</Name>
+    <RootNamespace>smart fan controller</RootNamespace>
+    <ToolchainFlavour>XC8_2.36</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress />
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue />
+    <BootSegment>2</BootSegment>
+    <ResetRule>0</ResetRule>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <EraseKey />
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.52.0" />
+        </dependencies>
+      </framework-data>
+    </AsfFrameworkConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <com.microchip.xc8>
+        <com.microchip.xc8.common.optimization.RelaxBranches>True</com.microchip.xc8.common.optimization.RelaxBranches>
+        <com.microchip.xc8.compiler.general.ChangeDefaultCharTypeUnsigned>True</com.microchip.xc8.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <com.microchip.xc8.compiler.general.ChangeDefaultBitFieldUnsigned>True</com.microchip.xc8.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <com.microchip.xc8.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>(%24DeviceMacro)</Value>
+            <Value>NDEBUG</Value>
+          </ListValues>
+        </com.microchip.xc8.compiler.symbols.DefSymbols>
+        <com.microchip.xc8.compiler.optimization.level>Optimize for size (-Os)</com.microchip.xc8.compiler.optimization.level>
+        <com.microchip.xc8.compiler.optimization.PackStructureMembers>True</com.microchip.xc8.compiler.optimization.PackStructureMembers>
+        <com.microchip.xc8.compiler.optimization.AllocateBytesNeededForEnum>True</com.microchip.xc8.compiler.optimization.AllocateBytesNeededForEnum>
+        <com.microchip.xc8.compiler.warnings.AllWarnings>True</com.microchip.xc8.compiler.warnings.AllWarnings>
+        <com.microchip.xc8.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </com.microchip.xc8.linker.libraries.Libraries>
+      </com.microchip.xc8>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <com.microchip.xc8>
+        <com.microchip.xc8.compiler.general.ChangeDefaultCharTypeUnsigned>True</com.microchip.xc8.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <com.microchip.xc8.compiler.general.ChangeDefaultBitFieldUnsigned>True</com.microchip.xc8.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <com.microchip.xc8.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>(%24DeviceMacro)</Value>
+            <Value>DEBUG</Value>
+          </ListValues>
+        </com.microchip.xc8.compiler.symbols.DefSymbols>
+        <com.microchip.xc8.compiler.optimization.level>Optimize debugging experience (-Og)</com.microchip.xc8.compiler.optimization.level>
+        <com.microchip.xc8.compiler.optimization.PackStructureMembers>True</com.microchip.xc8.compiler.optimization.PackStructureMembers>
+        <com.microchip.xc8.compiler.optimization.AllocateBytesNeededForEnum>True</com.microchip.xc8.compiler.optimization.AllocateBytesNeededForEnum>
+        <com.microchip.xc8.compiler.optimization.DebugLevel>Default (-g2)</com.microchip.xc8.compiler.optimization.DebugLevel>
+        <com.microchip.xc8.compiler.warnings.AllWarnings>True</com.microchip.xc8.compiler.warnings.AllWarnings>
+        <com.microchip.xc8.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </com.microchip.xc8.linker.libraries.Libraries>
+        <com.microchip.xc8.assembler.debugging.DebugLevel>Default (-Wa,-g)</com.microchip.xc8.assembler.debugging.DebugLevel>
+      </com.microchip.xc8>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="APP\includes\FUNCTIONS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\src\SMART_FAN.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\includes\debouncing.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\includes\KEYPAD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\includes\L298N.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\includes\LCD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\includes\LM35.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\src\debouncing.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\src\KEYPAD.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\src\L298N.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\src\LCD.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\src\LM35.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB_FOLDER\common_macros.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB_FOLDER\std_types.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\ADC_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\ADC_REG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\DIO_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\DIO_REG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\External_INT_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\External_INT_Reg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\SPI_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\SPI_REG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\TIMER.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\TIMER0_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\TIMER0_REG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\TIMER1_PWM_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\TIMER1_PWM_REG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\UART_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\includes\UART_REG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\src\ADC.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\src\DIO.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\src\External_INT.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\src\SPI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\src\TIMER0.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\src\TIMER1_PWM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\src\UART.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="APP\" />
+    <Folder Include="APP\includes\" />
+    <Folder Include="APP\src\" />
+    <Folder Include="Debug\" />
+    <Folder Include="HAL\" />
+    <Folder Include="HAL\includes\" />
+    <Folder Include="HAL\src\" />
+    <Folder Include="LIB_FOLDER\" />
+    <Folder Include="MCAL\" />
+    <Folder Include="MCAL\includes\" />
+    <Folder Include="MCAL\src\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="smart fan controller.componentinfo.xml">
+      <SubType>compile</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>
